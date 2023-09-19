@@ -1,0 +1,132 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Center the content vertically and horizontally */
+html, body {
+    height: 100%;
+}
+
+/* Container for the page content */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Left side (Image Slider) */
+.left-side {
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 1px;
+}
+
+/* Right side (Login Form) */
+.right-side {
+    flex: 1;
+    background-color: #ffffff;
+    text-align: center;
+
+}
+
+/* Logo styling */
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+/* Title styling */
+h2 {
+    font-size: 1.5rem;
+}
+
+/* Form styling */
+form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Password visibility toggle icon */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Additional links styling */
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+/* Login button styling */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Sign up link styling */
+.signup-link {
+    margin-top: 10px;
+}
+.slider-container{
+/*max-width:100%;
+max-height:100%;*/
+overflow: hidden;
+
+}
+.sliderImage{
+height:auto;
+
+}
+
+
+/* Style for the select element */
+select[name="resident_id_type"] {
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    appearance: none; /* Remove default arrow icon in some browsers */
+}
+
+/* Style for the dropdown arrow icon (customizable) */
+select[name="resident_id_type"]::after {
+    content: "\25BC"; /* Downward arrow character */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Make the arrow non-clickable */
+}
+select[name="resident_id_type"] option {
+    color: gray; /* Change the color of all options to gray */
+}

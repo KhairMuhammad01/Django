@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+<body>
+    <div style="display: flex; height: 100vh;">
+        <!-- Left Half (Image Slider) -->
+        <div style="flex: 1; background-color: #f0f0f0;">
+            <!-- Left Half (Image Slider) -->
+<!-- Left Half (Image Slider) -->
+<div class="left-side" style="width: 105vh; flex: 1; height: 100%;">
+    <div class="slider-container" style="width: 105vh; height: 100%">
+        <img src="../static/Images/P1.jpeg" alt="pic1" class="slider-image" id="sliderImage" style="width:105vh; height:100%;">
+    </div>
+</div>
+
+<script>
+    // JavaScript for the image slider
+    var images = ["../static/Images/P1.jpeg", "../static/Images/P2.jpeg", "../static/Images/P3.jpeg"];
+    var currentIndex = 0;
+    var sliderImage = document.getElementById("sliderImage");
+
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        sliderImage.src =  images[currentIndex]; // Update the image source
+    }
+
+    // Change the image every 3 seconds (adjust as needed)
+    setInterval(changeImage, 3000);
+
+    // Ensure the slider loops back to the first image when reaching the last image
+    sliderImage.addEventListener("load", function () {
+        if (currentIndex === images.length - 1) {
+            setTimeout(function () {
+                currentIndex = 0;
+                sliderImage.src = images[currentIndex];
+            }, 3000); // Wait for 3 seconds before resetting to the first image
+        }
+    });
+</script>
+
+            <!-- Add your image slider code here -->
+            <!-- You can use JavaScript or a library like Slick Slider for the slider -->
+        </div>
+
+        <!-- Right Half (Login Form) -->
+        <div style="flex: 1; background-color: #ffffff; text-align: center; padding: 20px;">
+            <div style="margin-top: 10%;">
+                <img src="../static/Images/logo.jpeg" alt="Logo" style=" border-radius: 100%">
+                <h2>Welcome Back. Please Login To Continue</h2>
+
+                <!-- Login Form -->
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="ID or Number" required>
+                    <div style="position: relative;">
+                        <input type="password" name="password" placeholder="Password" required>
+                        <span style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility(this)">👁️</span>
+                    </div>
+                    <a href="{% url 'forgot_password' %}" style="position: absolute; top: 59%; right: 10px; transform: translateY(-50%); font-size: 0.8rem;">Forgot Password?</a>
+
+                    {% if error_message%}
+                    <p class = "error-message">{{ error_message }}</p>
+                    {% endif %}
+                    <button type="submit" style="display: block; margin: 20px auto; width: 100%;">Login</button>
+
+                    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(icon) {
+            var passwordField = icon.parentElement.querySelector('input[type="password"]');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

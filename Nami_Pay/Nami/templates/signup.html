@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <div style="display: flex; height: 100vh;">
+        <!-- Left Half (Image Slider) -->
+        <div style="flex: 1; background-color: #f0f0f0;">
+            <!-- Left Half (Image Slider) -->
+            <div class="left-side" style="width: 105vh; flex: 1; height: 100%;">
+                <div class="slider-container" style="width: 105vh; height: 100%">
+                    <img src="../static/Images/P1.jpeg" alt="pic1" class="slider-image" id="sliderImage" style="width:105vh; height:100%;">
+                </div>
+            </div>
+
+            <script>
+                // JavaScript for the image slider
+                var images = ["../static/Images/P1.jpeg", "../static/Images/P2.jpeg", "../static/Images/P3.jpeg"];
+                var currentIndex = 0;
+                var sliderImage = document.getElementById("sliderImage");
+
+                function changeImage() {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    sliderImage.src = images[currentIndex]; // Update the image source
+                }
+
+                // Change the image every 3 seconds (adjust as needed)
+                setInterval(changeImage, 3000);
+
+                // Ensure the slider loops back to the first image when reaching the last image
+                sliderImage.addEventListener("load", function () {
+                    if (currentIndex === images.length - 1) {
+                        setTimeout(function () {
+                            currentIndex = 0;
+                            sliderImage.src = images[currentIndex];
+                        }, 3000); // Wait for 3 seconds before resetting to the first image
+                    }
+                });
+            </script>
+
+            <!-- Add your image slider code here -->
+            <!-- You can use JavaScript or a library like Slick Slider for the slider -->
+        </div>
+
+        <!-- Right Half (Signup Form) -->
+        <div class="right-side">
+            <div style="margin-top: 10%;">
+                <img src="../static/Images/logo.jpeg" alt="Logo" style=" border-radius: 100%">
+                <h2>Welcome. Create an Account</h2>
+
+                <!-- Signup Form -->
+                <form method="post">
+                    {% csrf_token %}
+
+                <table style="margin: 0; width: 104vh;">
+                                <tr>
+                                    <td>
+                                        <!-- Username field -->
+                                        <input type="text" name="username" placeholder="Username" required>
+                                    </td>
+                                    <td style="margin: 0; width: 50%; right:0;">
+                                        <!-- ID field -->
+                                        <input type="text" name="id_number" placeholder="ID Number" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- CR field -->
+                                        <input type="text" name="cr_number" placeholder="CR Number" required>
+                                    </td>
+                                    <td>
+                                        <!-- Mobile Number field -->
+                                        <input type="text" name="mobile_number" placeholder="Mobile Number" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Password field with eye icon -->
+                                        <div style="position: relative;">
+                                            <input type="password" name="password" placeholder="Password" required>
+                                            <span style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility(this)">👁️</span>
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <!-- Resident ID Type selection box -->
+                                        <select name="resident_id_type" required style="color: gray;">
+                                            <option value="" disabled selected>Select Resident ID Type</option>
+                                            <option value="type1">Type 1</option>
+                                            <option value="type2">Type 2</option>
+                                            <option value="type3">Type 3</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                    <!-- Sign Up Button -->
+                    <button type="submit" style="display: block; margin: 20px auto; width: 100%;">Sign Up</button>
+
+                    <!-- Already have an account? Log In -->
+                    <p>Already have an account? <a href="{% url 'home' %}">Log In</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(icon) {
+            var passwordField = icon.parentElement.querySelector('input[type="password"]');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
